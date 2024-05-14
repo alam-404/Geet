@@ -62,6 +62,8 @@ class Command:
                         f"<b><green>Playing: </green></b> {self.song_name}\n{position}"
                     )
                     success["player_status"] = player_message
+                else:
+                    success["message"] = "Something went wrong while playing the audio."
                 return success
 
             case "pause":
@@ -69,7 +71,9 @@ class Command:
                 success["message"] = message
 
                 position = self.player.get_current_position()
-                player_message = f"<b><lightgreen>Paused: </lightgreen></b> {self.song_name}\n{position}"
+                player_message = (
+                    f"<b><green>Paused: </green></b> {self.song_name}\n{position}"
+                )
                 success["player_status"] = player_message
                 return success
 
@@ -77,7 +81,9 @@ class Command:
                 message = self.player.toggle_play_pause("resume")
                 success["message"] = message
                 position = self.player.get_current_position()
-                player_message = f"<b><lightgreen>Playing: </lightgreen></b> {self.song_name}\n{position}"
+                player_message = (
+                    f"<b><green>Playing: </green></b> {self.song_name}\n{position}"
+                )
                 success["player_status"] = player_message
                 return success
 
@@ -102,7 +108,7 @@ class Command:
                     return success
 
                 position = self.player.get_current_position()
-                player_message = f"<b><green>{self.player.state().capitalize()} </green></b> {self.song_name}\n{position}"
+                player_message = f"<b><green>{self.player.state()} </green></b> {self.song_name}\n{position}"
                 success["player_status"] = player_message
                 return success
 
