@@ -2,6 +2,7 @@ from prompt_toolkit.shortcuts import radiolist_dialog
 from prompt_toolkit.styles import Style
 from typing import TypeVar
 from prompt_toolkit.application import Application
+from prompt_toolkit.formatted_text import HTML
 
 
 _T = TypeVar("_T")
@@ -18,7 +19,9 @@ class Dialog:
         )
         select = radiolist_dialog(
             title="Songs",
-            text="Select the song",
+            text=HTML(
+                "<b>Select the song</b>\n\u2191 Up \u2193 Down\nEnter - to select song\nTab - to select button"
+            ),
             values=data,
             ok_text="Play",
             cancel_text="Exit",
